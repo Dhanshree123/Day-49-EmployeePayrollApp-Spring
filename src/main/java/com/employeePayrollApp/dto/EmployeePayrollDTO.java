@@ -13,4 +13,7 @@ public class EmployeePayrollDTO {
 		this.name = name;
 		this.salary = salary;
 	}
+	public EmployeePayrollDTO() {
+		
+	}
 }
