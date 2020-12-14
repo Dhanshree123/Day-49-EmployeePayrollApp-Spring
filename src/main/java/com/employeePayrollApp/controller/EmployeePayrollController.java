@@ -3,7 +3,7 @@ package com.employeePayrollApp.controller;
 import java.util.List;
 
 
-
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ import com.employeePayrollApp.dto.EmployeePayrollDTO;
 import com.employeePayrollApp.dto.ResponseDTO;
 import com.employeePayrollApp.model.EmployeePayrollData;
 import com.employeePayrollApp.services.IEmployeePayrollService;
-import com.employeePayrollApp.repository.EmployeeRepository;
+
 
 @RestController
 @RequestMapping("/employeepayrollservice")
@@ -41,15 +41,19 @@ public class EmployeePayrollController {
 		return employeePayrollService.getEmployeePayrollDataById(empId);
 	}
 	@PostMapping("/create")
-	public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmployeePayrollData empPayrollData){
-		EmployeePayrollData empData = employeePayrollService.createEmployeePayrollData(empPayrollData);
+	public ResponseEntity<ResponseDTO> addEmployeePayrollData(
+			@Valid @RequestBody EmployeePayrollDTO empPayrollDTO){
+		EmployeePayrollData empData = null;
+		empData = employeePayrollService.createEmployeePayrollData(empPayrollDTO);
 		ResponseDTO respDTO = new ResponseDTO("Created Employee Payroll Data Successfully", empData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);	
 		}
 
 	@PutMapping("/update/{empId}")
-	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId, @RequestBody EmployeePayrollData empPayrollData){
-		EmployeePayrollData empData =  employeePayrollService.updateEmployeePayrollData(empId, empPayrollData);
+	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId, 
+			@Valid @RequestBody EmployeePayrollDTO empPayrollDTO){
+		EmployeePayrollData empData = null;
+		empData = employeePayrollService.updateEmployeePayrollData(empId, empPayrollDTO);
 		ResponseDTO respDTO = new ResponseDTO("Updated Employee Payroll Data Successfully", empData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);	
 		}

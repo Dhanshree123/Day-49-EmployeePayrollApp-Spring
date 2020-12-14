@@ -7,11 +7,12 @@ import com.employeePayrollApp.model.EmployeePayrollData;
 
 public interface IEmployeePayrollService {
 	List<EmployeePayrollData> getEmployeePayrollData();
+
 	EmployeePayrollData getEmployeePayrollDataById(int empId);
 
-	EmployeePayrollData createEmployeePayrollData(EmployeePayrollData empPayrollData);
+	EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO empPayrollDTO);
 
-	EmployeePayrollData updateEmployeePayrollData(int empId,EmployeePayrollData empPayrollData);
+	EmployeePayrollData updateEmployeePayrollData(int empId, EmployeePayrollDTO empPayrollDTO);
 
 	void deleteEmployeePayrollData(int empId);
 }
