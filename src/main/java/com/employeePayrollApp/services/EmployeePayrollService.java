@@ -45,7 +45,7 @@ public class EmployeePayrollService implements IEmployeePayrollService{
 	public EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
 		//emailService.sendSimpleMessage("jayeshpatil1830@gmail.com","Email for confirmation","Registration done");
 		EmployeePayrollData empData = new EmployeePayrollData(empPayrollDTO);	
-		log.debug("Emp Data: "+empData.toString());
+		log.debug("Emp Data:"+empData.toString());
 		return employeeRepository.save(empData);
 	}
 
